@@ -1,9 +1,6 @@
 #pragma once
-#define _CRT_SECURE_NO_WARNINGS 1
-#include <graphics.h>
-#include <cstdio>
-#include <cstring>
-#include <iostream>
+
+#include "All.h"
 using namespace std;
 
 bool IsLegal(char ch);

@@ -10,10 +10,8 @@
 #include "All.h"
 
 
-int main()
-{
-	while (true)
-	{
+int main(){
+	while (true){
 		char parent[100];
 		char child[100];
 		strcpy(child, GetCube());

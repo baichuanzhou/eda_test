@@ -1,3 +1,7 @@
-﻿  GetCube.cpp
-C:\Users\zbc44\Desktop\c-programming\eda_test\eda_test\GetCube.cpp(38): warning C4172: 返回局部变量或临时变量的地址: cube
-  eda_test.vcxproj -> C:\Users\zbc44\Desktop\c-programming\eda_test\Debug\eda_test.exe
+﻿  Contain.cpp
+  GetCube.cpp
+  test.cpp
+  正在生成代码...
+C:\Users\zbc44\Desktop\eda_test\eda_test\GetCube.cpp(38): warning C4172: 返回局部变量或临时变量的地址: cube
+C:\Users\zbc44\Desktop\eda_test\eda_test\GetCube.cpp(40): warning C4172: 返回局部变量或临时变量的地址: cube
+  eda_test.vcxproj -> C:\Users\zbc44\Desktop\eda_test\Debug\eda_test.exe
