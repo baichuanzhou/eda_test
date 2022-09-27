@@ -1,0 +1,4 @@
+﻿  contain.cpp
+C:\Users\zbc44\Desktop\eda_test2\eda_test2\contain.cpp(22,19): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\zbc44\Desktop\eda_test2\eda_test2\contain.cpp(106,21): warning C4018: “<”: 有符号/无符号不匹配
+  eda_test2.vcxproj -> C:\Users\zbc44\Desktop\eda_test2\Debug\eda_test2.exe
