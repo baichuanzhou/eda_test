@@ -10,6 +10,7 @@
 #include "All.h"
 
 
+
 int main(){
 	while (true){
 		char parent[100];

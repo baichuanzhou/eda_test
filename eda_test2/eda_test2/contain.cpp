@@ -79,6 +79,10 @@ void Cube::printContain(Cube& child) {
 	cout << childCube << " !=> " << parentCube << endl;
 }
 
+int Cube::getDimension() {
+	return dimension;
+}
+
 ostream& operator<<(std::ostream& out, const Cube& cube) {
 	out << "{";
 	if (!cube.cube.empty()) {
@@ -92,6 +96,13 @@ ostream& operator<<(std::ostream& out, const Cube& cube) {
 ///////////////////////////////////////////////////////////////////////////
 
 
+T_Cube::T_Cube(int num = 0) {
+	size = 0;
+	while(size != num) {
+		Cube tempCube;
+		addCube(tempCube);
+	}
+}
 
 bool T_Cube::judgeContain(Cube& cube) {
 	return true;
@@ -122,6 +133,7 @@ void T_Cube::absorb() {
 				
 				cout << childTemp << " => " << parentTemp << endl;
 				cout << "Delete " << childTemp << endl;
+				cout << endl;
 				j = temp.erase(j);
 				i = temp.begin();
 			}
@@ -131,8 +143,20 @@ void T_Cube::absorb() {
 		}
 	}
 	T = temp;
+	
 }
 
 void T_Cube::addCube(Cube cube) {
-	T.push_back(cube);
+	if (size == 0) {
+		T.push_back(cube);
+		size++;
+	}
+	else {
+		if (T[0].getDimension() != cube.getDimension()) {
+			cout << "不在一个维度上!" << endl;
+			return;
+		}
+		T.push_back(cube);
+		size++;
+	}
 }

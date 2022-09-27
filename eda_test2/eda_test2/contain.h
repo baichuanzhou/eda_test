@@ -25,6 +25,8 @@ public:
 
 	void printContain(Cube& child);
 
+	int getDimension();
+
 private:
 	string cube;
 	int dimension;
@@ -33,7 +35,7 @@ private:
 
 class T_Cube {
 public:
-	// T_Cube();	// constructor
+	T_Cube(int num);	// constructor
 	// ~T_Cube();	// destroyer
 
 	bool judgeContain(Cube& cube);
