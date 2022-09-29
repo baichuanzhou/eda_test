@@ -1,8 +1,8 @@
 #include "cube.h"
 
 
-Cube nullCube("");
-extern T_Cube nullTCube;
+Cube nullCube("");	// 定义一个空立方体
+extern T_Cube nullTCube;	// 声明, 从外部文件链接变量, 一个空立方集合
 
 Cube::Cube() {
 	getCube();

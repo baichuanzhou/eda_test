@@ -1,7 +1,9 @@
 #include "tcube.h"
 
-T_Cube nullTCube(0);
-extern Cube nullCube;
+T_Cube nullTCube(0);	// 定义一个空立方体集合
+extern Cube nullCube;	// 声明, 从外部文件链接变量, 一个空立方体
+
+
 
 T_Cube::T_Cube(int num) {
 	size = 0;
