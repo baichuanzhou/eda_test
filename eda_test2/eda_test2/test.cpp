@@ -1,4 +1,8 @@
-#include "contain.h"
+#include "tcube.h"
+#include "cube.h"
+
+using namespace std;
+extern T_Cube nullTCube;
 
 void testAbsorb() {
 	Cube cube1;
@@ -9,13 +13,7 @@ void testAbsorb() {
 	Cube cube5;
 	Cube cube6;
 
-	T_Cube T1(0);
-	T1.addCube(cube1);
-	T1.addCube(cube2);
-	T1.addCube(cube3);
-	T1.addCube(cube4);
-	T1.addCube(cube5);
-	T1.addCube(cube6);
+	T_Cube T1 = cube1 + cube2 + cube3 + cube4 + cube5 + cube6;
 	
 	T1.absorb();
 	cout << T1;
@@ -26,13 +24,94 @@ void testCubeContain()
 	while (true) {
 		Cube child;
 		Cube parent;
-		// child.getCube();
-		// parent.getCube();
 		child.printContain(parent);
 		parent.printContain(child);
 	}
 }
 
+void testTCubeConatain() {
+	T_Cube T1(2);
+	T_Cube T2(2);
+	T_Cube T3(2);
+
+	T1.printContain(T2);
+	T2.printContain(T3);
+	T3.printContain(T2);
+}
+
+void testTCubeAdd() {
+	T_Cube T1;
+	T_Cube T2;
+
+	cout << T1 + T2 << endl;
+}
+
+void testCrossCube() {
+	Cube a("0x0");
+	Cube c("11x");
+	Cube d("1x1");
+	Cube f("1xx");
+
+	cout << a.crossCube(c) << endl;
+	cout << c.crossCube(d) << endl;
+	cout << c.crossCube(f) << endl;
+
+}
+
+void testCrossTCube() {
+	Cube t("00x");
+
+	Cube t1("0x0");
+	Cube t2("x01");
+	T_Cube T(0);
+
+	T = t1 + t2;
+
+	cout << T.crossCube(t) << endl;
+}
+
+void testExpandCube() {
+	Cube t("xxx");
+	T_Cube T = nullTCube;
+	cout << expandCube(t, 0, T) << endl;
+}
+
+void testOverload() {
+	Cube t1("0x0");
+	Cube t2("0x1");
+	cout << t1 / t2 << endl;
+
+	Cube t3("011");
+	Cube t4("001");
+	cout << t3 / t4 << endl;
+
+
+	Cube t5("010");
+	Cube t6("101");
+	cout << t5 / t6 << endl;
+}
+
+void testSharpMul() {
+	Cube t1("xxx");
+	Cube t2("010");
+	cout << t1 * t2 << endl;
+
+	Cube t3("0xx");
+	Cube t4("01x");
+	cout << t3 * t4 << endl;
+
+	Cube t5("0xx");
+	Cube t6("x11");
+	cout << t5 * t6 << endl;
+
+	Cube t7("0xx");
+	Cube t8("1x1");
+	cout << t7 * t8 << endl;
+}
+
+/// <>
+/// //////////////
+/// <>
 void menu() {
 	cout << endl;
 	cout << "***************************" << endl;
@@ -59,6 +138,7 @@ void tcubeAbsorb() {
 	TCube.absorb();
 	cout << TCube << endl;;
 }
+
 void test() {
 	menu();
 	int opt = 0;
@@ -80,6 +160,13 @@ void test() {
 }
 
 int main() {
-	test();
+	// test();
+	// testTCubeConatain();
+	// testTCubeAdd();
+	// testExpandCube();
+
+	testSharpMul();
+
+	// testOverload();
 	return 0;
 }
