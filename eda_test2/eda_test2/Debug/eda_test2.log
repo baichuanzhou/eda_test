@@ -1,2 +1,8 @@
-﻿  test.cpp
+﻿  cube.cpp
+C:\Users\zbc44\Desktop\eda_test\eda_test2\eda_test2\cube.cpp(30,20): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\zbc44\Desktop\eda_test\eda_test2\eda_test2\cube.cpp(137,20): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\zbc44\Desktop\eda_test\eda_test2\eda_test2\cube.cpp(204,20): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\zbc44\Desktop\eda_test\eda_test2\eda_test2\cube.cpp(218,17): warning C4018: “<”: 有符号/无符号不匹配
+  test.cpp
+  正在生成代码...
   eda_test2.vcxproj -> C:\Users\zbc44\Desktop\eda_test\eda_test2\Debug\eda_test2.exe

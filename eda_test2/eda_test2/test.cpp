@@ -167,6 +167,8 @@ int main() {
 
 	testSharpMul();
 
-	// testOverload();
+	testOverload();
+
+	testCrossCube();
 	return 0;
 }
