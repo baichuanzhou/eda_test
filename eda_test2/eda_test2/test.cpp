@@ -1,6 +1,7 @@
 #include "tcube.h"
 #include "cube.h"
-#include <graphics.h>
+#include "utils.h"
+#include <iostream>
 
 using namespace std;
 extern T_Cube nullTCube;
@@ -71,11 +72,11 @@ void testCrossTCube() {
 	cout << T.crossCube(t) << endl;
 }
 
-void testExpandCube() {
-	Cube t("xxx10x");
-	T_Cube T = nullTCube;
-	cout << expandCube(t, 0, T) << endl;
-}
+//void testExpandCube() {
+//	Cube t("xxx10x");
+//	T_Cube T = nullTCube;
+//	cout << expandCube(t, 0, T) << endl;
+//}
 
 void testOverload() {
 	Cube t1("0x0");
@@ -108,6 +109,14 @@ void testSharpMul() {
 	Cube t7("0xx");
 	Cube t8("1x1");
 	cout << t7 * t8 << endl;
+
+	Cube t9("1xx0");
+	Cube t10("x1x0");
+	cout << t9 * t10 << endl;
+
+	T_Cube T1 = Cube("0x0x") + Cube("x100") + Cube("0001") + Cube("00x1");
+	T_Cube T2 = Cube("0xx1") + Cube("x1x1");
+	cout << T1 * T2 << endl;
 }
 
 /// <>
@@ -115,29 +124,86 @@ void testSharpMul() {
 /// <>
 void menu() {
 	cout << endl;
-	cout << "***************************" << endl;
-	cout << "***选择需要进行的运算*******" << endl;
-	cout << "***1. 立方体包含运算********" << endl;
-	cout << "***2. 立方体集合吸收********" << endl;
-	cout << "********-1. 退出***********" << endl;
-	cout << "***************************" << endl;
+	cout << "选择需要进行的运算" << endl;
+	cout << "1.立方体运算" << endl;
+	cout << "2.立方体集合运算" << endl;
+	cout << "-1. 退出" << endl;
+	cout << endl;
 }
 
-void cubeContain() {
-	Cube child;
-	Cube parent;
-	child.printContain(parent);
-	parent.printContain(child);
+void menuCube() {
+	cout << endl;
+	cout << "立方体支持以下运算：" << endl;
+	cout << "1. 立方体是否包含" << endl;
+	cout << "2. 立方体之间相交" << endl;
+	cout << "3. 立方体之间锐积" << endl;
+	cout << "4. 立方体之间吸收" << endl;
+	cout << endl;
 }
 
-void tcubeAbsorb() {
-	cout << "集合包含的立方体个数是:) " << endl;
-	int size;
-	cin >> size;
-	T_Cube TCube(size);
+void testCube() {
+	Cube c1;
+	Cube c2;
+	cout << endl << "1. " << endl;
+	c1.printContain(c2);
+	c2.printContain(c1);
 
-	TCube.absorb();
-	cout << TCube << endl;;
+	cout << endl << "2. " << endl;
+	cout << c1 << " & " << c2 << " = " << c1.crossCube(c2) << endl;
+	
+	cout << endl << "3. " << endl;
+	cout << c1 << " # " << c2 << " = " << c1 * c2 << endl;
+
+	cout << endl << "4. " << endl;
+	cout << c1 << " + " << c2 << " = " << c1 + c2 << endl;
+}
+
+void menuTCube() {
+	cout << endl;
+	cout << "立方体集合支持以下运算：" << endl;
+	cout << "1. 立方体集合是否包含" << endl;
+	cout << "2. 立方体集合之间相交" << endl;
+	cout << "3. 立方体集合之间锐积" << endl;
+	cout << "4. 立方体集合之间吸收" << endl;
+	cout << endl;
+}
+
+void testTCube() {
+	cout << "请输入两个立方体集合:)" << endl;
+	cout << "请以空格隔开立方体:)" << endl;
+
+	string lineOne;
+	string lineTwo;
+
+	cout << "请输入第一个立方体:)" << endl;
+	cin.ignore();
+	getline(cin, lineOne);
+	cout << "请输入第二个立方体:)" << endl;
+	getline(cin, lineTwo);
+	
+
+	T_Cube T1 = nullTCube;
+	for (string cubeStr : strip(lineOne)) {
+		T1 += Cube(cubeStr);
+	}
+
+	T_Cube T2 = nullTCube;
+	for (string cubeStr : strip(lineTwo)) {
+		T2 += Cube(cubeStr);
+	}
+
+	cout << endl << "1. " << endl;
+	T1.printContain(T2);
+	T2.printContain(T1);
+
+	cout << endl << "2. " << endl;
+	cout << T1 << " & " << T2 << " = " << T1.crossCube(T2);
+
+	cout << endl << "3. " << endl;
+	cout << T1 << " # " << T2 << " = " << T1 * T2 << endl;
+
+	cout << endl << "4. " << endl;
+	cout << T1 << " + " << T2 << " = " << T1 + T2 << endl;
 }
 
 void test() {
@@ -146,10 +212,12 @@ void test() {
 	cin >> opt;
 	while (opt != -1) {
 		if (opt == 1) {
-			cubeContain();
+			menuCube();
+			testCube();
 		}
 		else if (opt == 2) {
-			tcubeAbsorb();
+			menuTCube();
+			testTCube();
 		}
 
 		else {
@@ -160,8 +228,10 @@ void test() {
 	}
 }
 
+
+
 int main() {
-	// test();
+	test();
 	// testTCubeConatain();
 	// testTCubeAdd();
 	// testExpandCube();
@@ -171,39 +241,7 @@ int main() {
 	// testOverload();
 
 	// testCrossCube();
-	initgraph(640, 480);
-
-	ExMessage m;		// 定义消息变量
-
-	while (true)
-	{
-		// 获取一条鼠标或按键消息
-		m = getmessage(EX_MOUSE | EX_KEY);
-
-		switch (m.message)
-		{
-		case WM_MOUSEMOVE:
-			// 鼠标移动的时候画红色的小点
-			putpixel(m.x, m.y, RED);
-			break;
-
-		case WM_LBUTTONDOWN:
-			// 如果点左键的同时按下了 Ctrl 键
-			if (m.ctrl)
-				// 画一个大方块
-				rectangle(m.x - 10, m.y - 10, m.x + 10, m.y + 10);
-			else
-				// 画一个小方块
-				rectangle(m.x - 5, m.y - 5, m.x + 5, m.y + 5);
-			break;
-
-		case WM_KEYDOWN:
-			if (m.vkcode == VK_ESCAPE)
-				return 0;	// 按 ESC 键退出程序
-		}
-	}
-
-	// 关闭图形窗口
-	closegraph();
+	// testCrossTCube();
+	
 	return 0;
 }

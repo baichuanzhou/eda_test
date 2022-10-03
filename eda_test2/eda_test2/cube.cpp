@@ -1,5 +1,5 @@
 #include "cube.h"
-
+#include "tcube.h"
 
 Cube nullCube("");	// 定义一个空立方体
 extern T_Cube nullTCube;	// 声明, 从外部文件链接变量, 一个空立方集合
@@ -188,9 +188,30 @@ T_Cube Cube::operator*(const Cube& otherCube) {
 	if (otherCube.judgeContain(*this)) {
 		return nullTCube;
 	}
-	T_Cube cubeSet1 = nullTCube;
-	T_Cube cubeSet2 = nullTCube;
-	T_Cube result = expandCube(*this, 0, cubeSet1) - expandCube(otherCube, 0, cubeSet2);
+
+	if (this->crossCube(otherCube) == nullCube) {
+		return nullTCube + *this;
+	}
+
+	T_Cube result = nullTCube;
+	for (int i = cube.length() - 1; i >= 0; i--) {
+		if (cube[i] == 'x' && otherCube.cube[i] != 'x') {
+			if (otherCube.cube[i] == '0') {
+				result += Cube(cube.substr(0, i) + '1' + cube.substr(i + 1));
+			}
+			else {
+				result += Cube(cube.substr(0, i) + '0' + cube.substr(i + 1));
+			}
+		}
+	}
+	return result;
+}
+
+T_Cube Cube::operator*(const T_Cube& TCube) {
+	T_Cube result = nullTCube + *this;
+	for (Cube indexCube : TCube.T) {
+		result *= indexCube;
+	}
 	return result;
 }
 
