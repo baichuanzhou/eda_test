@@ -25,6 +25,7 @@ public:
     T_Cube(int num);	// constructor
 
     T_Cube();
+
     // ~T_Cube();	// destroyer
 
     bool judgeContain(Cube& cube);	// 判断立方体是否被包含
@@ -37,11 +38,15 @@ public:
 
     void absorb();	// 吸收运算
 
+    vector<Cube> absorbHelper(vector<Cube> TCube);
+
     void shrink();	// 卡诺图化简
 
     void addCube(const Cube& cube);	// 向立方体集合中加入一个新的立方体
 
-    
+    void addDC(const Cube& cube);
+
+    T_Cube originalContains();
 
     T_Cube crossCube(const Cube& cube);	// 立方体与立方体集合相交
 
@@ -74,8 +79,13 @@ public:
     T_Cube& operator*=(const Cube& otherCube);
 
 private:
+    T_Cube(vector<Cube> TCube);
+
     vector<Cube> T;
+    vector<Cube> DC;
     int size;
+    int cubeDimension;
+    int dcSize;
     friend std::ostream& operator<<(std::ostream& out, const T_Cube& t_cube);
     friend class Cube;
 };

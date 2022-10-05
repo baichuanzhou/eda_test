@@ -119,6 +119,19 @@ void testSharpMul() {
 	cout << T1 * T2 << endl;
 }
 
+void testOriginalContains() {
+	T_Cube T1 = Cube("001") + Cube("01x") + Cube("110");
+	T1.addDC(Cube("10x"));
+	cout << T1.originalContains() << endl;
+
+	T_Cube T2 = Cube("0000") + Cube("0100") + Cube("01x1") + Cube("11x1") + Cube("0011");
+	cout << T2.originalContains() << endl;
+
+	T_Cube T3 = Cube("001") + Cube("01x") + Cube("110");
+	T3.addDC(Cube("10x"));
+	cout << T3.originalContains() << endl;
+}
+
 /// <>
 /// //////////////
 /// <>
@@ -165,6 +178,7 @@ void menuTCube() {
 	cout << "2. 立方体集合之间相交" << endl;
 	cout << "3. 立方体集合之间锐积" << endl;
 	cout << "4. 立方体集合之间吸收" << endl;
+	cout << "5. 立方体集合本原蕴含" << endl;
 	cout << endl;
 }
 
@@ -173,23 +187,39 @@ void testTCube() {
 	cout << "请以空格隔开立方体:)" << endl;
 
 	string lineOne;
-	string lineTwo;
+	string lineOneDC;
 
-	cout << "请输入第一个立方体:)" << endl;
+	string lineTwo;
+	string lineTwoDC;
+
+	cout << "请输入第一个立方体集合的ON:)" << endl;
 	cin.ignore();
 	getline(cin, lineOne);
-	cout << "请输入第二个立方体:)" << endl;
+	cout << "请输入第一个立方体集合的DC:)" << endl;
+	getline(cin, lineOneDC);
+
+
+	cout << "请输入第二个立方体集合的ON:)" << endl;
 	getline(cin, lineTwo);
-	
+	cout << "请输入第二个立方体集合的DC:)" << endl;
+	getline(cin, lineTwoDC);
 
 	T_Cube T1 = nullTCube;
 	for (string cubeStr : strip(lineOne)) {
 		T1 += Cube(cubeStr);
 	}
 
+	for (string dcStr : strip(lineOneDC)) {
+		T1.addDC(Cube(dcStr));
+	}
+
 	T_Cube T2 = nullTCube;
 	for (string cubeStr : strip(lineTwo)) {
 		T2 += Cube(cubeStr);
+	}
+
+	for (string dcStr : strip(lineTwoDC)) {
+		T2.addDC(Cube(dcStr));
 	}
 
 	cout << endl << "1. " << endl;
@@ -204,6 +234,10 @@ void testTCube() {
 
 	cout << endl << "4. " << endl;
 	cout << T1 << " + " << T2 << " = " << T1 + T2 << endl;
+
+	cout << endl << "5. " << endl;
+	cout << "第一个立方体集合的本原蕴含: " << T1.originalContains() << endl;
+	cout << "第二个立方体集合的本原蕴含: " << T2.originalContains() << endl;
 }
 
 void test() {
@@ -231,7 +265,7 @@ void test() {
 
 
 int main() {
-	test();
+	// test();
 	// testTCubeConatain();
 	// testTCubeAdd();
 	// testExpandCube();
@@ -242,6 +276,6 @@ int main() {
 
 	// testCrossCube();
 	// testCrossTCube();
-	
+	testOriginalContains();
 	return 0;
 }
