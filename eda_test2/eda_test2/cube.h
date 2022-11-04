@@ -44,6 +44,8 @@ public:
 
     Cube crossCube(const Cube& otherCube);	// 获得立方体的相交
 
+    Cube crossMerge(Cube& otherCube);
+
     int getDimension() const;	// 获得立方体的维度
 
     bool operator==(const Cube& cube);	// 重载运算符==, 判断是否相等

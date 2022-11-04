@@ -143,6 +143,41 @@ Cube Cube::crossCube(const Cube& otherCube) {
 	return crossCubeRes;
 }
 
+char crossMergeCal(char cubeOne, char cubeTwo) {
+	if (cubeOne == cubeTwo) {
+		return cubeOne;
+	}
+	if (cubeOne == 'x') {
+		return cubeTwo;
+	}
+	if (cubeTwo == 'x') {
+		return cubeOne;
+	}
+	else {
+		return '$';
+	}
+}
+
+Cube Cube::crossMerge(Cube& otherCube) {
+	Cube crossMergeRes("");
+	int count = 0;
+	for (int i = 0; i < getDimension();i ++) {
+		if (crossMergeCal(cube[i], otherCube.cube[i]) == '$') {
+			count++;
+		}
+	}
+	if (count == 1) {
+		for (int i = 0; i < getDimension(); i++) {
+			if (crossMergeCal(cube[i], otherCube.cube[i]) == '$') {
+				crossMergeRes += 'x';
+			}
+			else {
+				crossMergeRes += crossMergeCal(cube[i], otherCube.cube[i]);
+			}
+		}
+	}
+	return crossMergeRes;
+}
 
 int Cube::getDimension() const {
 	return dimension;

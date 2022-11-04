@@ -132,6 +132,17 @@ void testOriginalContains() {
 	cout << T3.originalContains() << endl;
 }
 
+void testCrossMerge() {
+	Cube t1("000");
+	Cube t2("010");
+	cout << t1.crossMerge(t2) << endl;
+
+	Cube t3("0x0");
+	Cube t4("1xx");
+	cout << t3.crossMerge(t4) << endl;
+	cout << t4.crossMerge(t3) << endl;
+}
+
 /// <>
 /// //////////////
 /// <>
@@ -276,6 +287,7 @@ int main() {
 
 	// testCrossCube();
 	// testCrossTCube();
-	testOriginalContains();
+	// testOriginalContains();
+	testCrossMerge();
 	return 0;
 }
