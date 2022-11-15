@@ -297,10 +297,6 @@ ostream& operator<<(std::ostream& out, const Cube& cube) {
 
 
 
-
-
-
-
 T_Cube expandCube(Cube targetCube, int index, T_Cube& cubeSet)
 {
 	if (index >= targetCube.dimension) {

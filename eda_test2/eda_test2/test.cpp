@@ -72,11 +72,13 @@ void testCrossTCube() {
 	cout << T.crossCube(t) << endl;
 }
 
-//void testExpandCube() {
-//	Cube t("xxx10x");
-//	T_Cube T = nullTCube;
-//	cout << expandCube(t, 0, T) << endl;
-//}
+
+
+void testExpandCube() {
+	Cube t("xxx10x");
+	T_Cube T = nullTCube;
+	cout << expandCube(t, 0, T) << endl;
+}
 
 void testOverload() {
 	Cube t1("0x0");
@@ -279,7 +281,7 @@ int main() {
 	// test();
 	// testTCubeConatain();
 	// testTCubeAdd();
-	// testExpandCube();
+	testExpandCube();
 
 	// testSharpMul();
 
@@ -288,6 +290,6 @@ int main() {
 	// testCrossCube();
 	// testCrossTCube();
 	// testOriginalContains();
-	testCrossMerge();
+	// testCrossMerge();
 	return 0;
 }
