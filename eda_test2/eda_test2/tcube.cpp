@@ -171,19 +171,23 @@ void T_Cube::addCube(const Cube& cube) {
 		size++;
 	}
 	else {
-		if (cubeDimension != cube.getDimension()) {
-			cout << *this << "与" << cube << "不在一个维度上!" << endl;
+		Cube res = cube;
+		while (cubeDimension != res.getDimension()) {
+			cout << *this << "与" << res << "不在一个维度上!" << endl;
 			cout << "请重新输入一个维度为" << cubeDimension << "的立方体" << endl;
 			string newCube;
 			cin >> newCube;
-			T.push_back(Cube(newCube));
-			absorb();
-			size++;
-			return;
+			res = Cube(newCube);
 		}
-		T.push_back(cube);
+		
+		for (int i = 0; i < size; i++) {
+			if (T[i] == res) {
+				return;
+			}
+		}
+		T.push_back(res);
 		absorb();
-		size++;
+		size = T.size();
 	}
 }
 
@@ -197,17 +201,20 @@ void T_Cube::addDC(const Cube& cube) {
 		dcSize++;
 	}
 	else {
-		if (cubeDimension != cube.getDimension()) {
-			cout << *this << "与" << cube << "不在一个维度上!" << endl;
+		Cube res = cube;
+		while (cubeDimension != res.getDimension()) {
+			cout << *this << "与" << res << "不在一个维度上!" << endl;
 			cout << "请重新输入一个维度为" << cubeDimension << "的立方体" << endl;
 			string newCube;
 			cin >> newCube;
-			DC.push_back(Cube(newCube));
-			absorb();
-			dcSize++;
-			return;
+			res = Cube(newCube);
 		}
-		DC.push_back(cube);
+		for (int i = 0; i < dcSize; i++) {
+			if (res == DC[i]) {
+				return;
+			}
+		}
+		DC.push_back(res);
 		absorb();
 		dcSize++;
 	}

@@ -278,10 +278,10 @@ void test() {
 
 
 int main() {
-	// test();
+	test();
 	// testTCubeConatain();
 	// testTCubeAdd();
-	testExpandCube();
+	// testExpandCube();
 
 	// testSharpMul();
 

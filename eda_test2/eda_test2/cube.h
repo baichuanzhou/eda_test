@@ -28,15 +28,11 @@ public:
 
     bool contain(char ch);	// 判断立方体是否包含变量ch
 
-    bool checkCube();	// 检查立方体是否合法
+    bool checkCube(string cubeString);	// 检查立方体是否合法
 
     bool checkCubeHelper(char ch);
 
     bool isEmpty() const;	// 判断立方体是否为空
-
-    void getCube();	// 对立方体进行复制, 构造函数调用此函数
-
-    string strCube() const;	// 获得立方体字符串
 
     void printContain(Cube& child);	// 打印立方体是否包含
 
@@ -47,6 +43,8 @@ public:
     Cube crossMerge(Cube& otherCube);
 
     int getDimension() const;	// 获得立方体的维度
+
+    string strCube() const;	// 获得立方体字符串
 
     bool operator==(const Cube& cube);	// 重载运算符==, 判断是否相等
 
@@ -73,5 +71,8 @@ private:
     string cube;
     int dimension;
     friend std::ostream& operator<<(std::ostream& out, const Cube& cube);
+    string getCubeString(string cubeString);
+    void getCube();	// 对立方体进行复制, 构造函数调用此函数
+    
 };
 #endif // CUBE_H

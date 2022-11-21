@@ -10,9 +10,9 @@ Cube::Cube() {
 }
 
 Cube::Cube(string cubeString) {
-	cube = cubeString;
-	dimension = cubeString.length();
-	assert(checkCube());
+	
+	cube = getCubeString(cubeString);
+	dimension = cube.length();
 }
 
 Cube::~Cube() {
@@ -67,12 +67,12 @@ bool Cube::checkCubeHelper(char ch){
 	return false;
 }
 
-bool Cube::checkCube() {
-	if (cube.empty()) {
+bool Cube::checkCube(string cubeString) {
+	if (cubeString.empty()) {
 		return true;
 	}
 
-	for (char ch : cube) {
+	for (char ch : cubeString) {
 		if (!checkCubeHelper(ch)) {
 			return false;
 		}
@@ -86,13 +86,24 @@ bool Cube::isEmpty() const {
 
 void Cube::getCube() {
 	cout << "请输入一个立方体:)" << endl;
-	cin >> cube;
+	string cubeString;
+	cin >> cubeString;
 
-	while (!checkCube()) {
-		cout << "输入的立方体不合法, 请重新输入!" << endl;
+	while (!checkCube(cubeString)) {
+		cout << "输入的立方体" << cubeString << "不合法, 请重新输入!" << endl;
 		cout << "请输入一个立方体:)" << endl;
-		cin >> cube;
+		cin >> cubeString;
 	}
+	cube = cubeString;
+}
+
+string Cube::getCubeString(string cubeString) {
+	while (!checkCube(cubeString)) {
+		cout << "输入的立方体" << cubeString << "不合法, 请重新输入!" << endl;
+		cout << "请输入一个立方体:)" << endl;
+		cin >> cubeString;
+	}
+	return cubeString;
 }
 
 string Cube::strCube() const {
